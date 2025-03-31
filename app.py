@@ -5,7 +5,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from fuzzywuzzy import process  
 
-# ✅ Function to add background image and footer
+# ✅ Function to add background image, text colors, and footer
 def add_custom_styles(image_url):
     css_code = f"""
     <style>
@@ -15,9 +15,27 @@ def add_custom_styles(image_url):
         background-position: center;
         background-attachment: fixed;
     }}
-    body, .stTextInput, .stSelectbox, .stButton, .stMarkdown {{
+    body, .stTextInput, .stSelectbox {{
         color: black !important;
         font-weight: bold;
+    }}
+    /* ✅ Movie Title Below Posters (Red Color) */
+    .movie-title {{
+        color: red;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 5px;
+    }}
+    /* ✅ Custom Style for Recommend Button */
+    div.stButton > button {{
+        background-color: green !important;
+        color: white !important;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 10px;
+        padding: 10px 20px;
+        border: none;
     }}
     /* ✅ Footer Styling */
     .footer {{
@@ -40,7 +58,7 @@ def add_custom_styles(image_url):
     st.markdown(css_code, unsafe_allow_html=True)
 
 # 🔹 Background Image (Tamil Actor Collage)
-background_image_url = "https://www.google.com/imgres?q=ott%20&imgurl=https%3A%2F%2Ftheunitedindian.com%2Fimages%2Fott-20-10-24-L-hero.jpg&imgrefurl=https%3A%2F%2Ftheunitedindian.com%2Fnews%2Fblog%3Frise-of-OTT-platforms%26b%3D341%26c%3D4&docid=Oxj1LtXdIh049M&tbnid=iBtQnsnr4znzVM&vet=12ahUKEwj56KiYxbOMAxXtR2wGHZs-DHMQM3oECGQQAA..i&w=952&h=593&hcb=2&ved=2ahUKEwj56KiYxbOMAxXtR2wGHZs-DHMQM3oECGQQAA"
+background_image_url = "https://www.google.com/imgres?q=kollywood%20wallpapers%20hd&imgurl=https%3A%2F%2Fpreview.redd.it%2Fthese-2-shots-from-the-lyric-video-are-such-wallpaper-v0-mejzcb7700rb1.png%3Fwidth%3D640%26crop%3Dsmart%26auto%3Dwebp%26s%3D03fee7e0a05e93a54ef8f623faa224ad90ae7461&imgrefurl=https%3A%2F%2Fwww.reddit.com%2Fr%2Fkollywood%2Fcomments%2F16ug3oh%2Fthese_2_shots_from_the_lyric_video_are_such%2F&docid=AwR3pYdgW7apdM&tbnid=WbqQtxBuv5Zn9M&vet=12ahUKEwjXiMnvxbOMAxW4SGcHHbmDBFMQM3oECGIQAA..i&w=640&h=359&hcb=2&ved=2ahUKEwjXiMnvxbOMAxW4SGcHHbmDBFMQM3oECGIQAA"
 add_custom_styles(background_image_url)
 
 # ✅ Load dataset
@@ -117,4 +135,4 @@ if selected_movie and st.button("Recommend"):
                     f'<img src="{poster_url}" width="150px" style="border-radius:10px; box-shadow: 2px 2px 10px rgba(0,0,0,0.5);"></a>',
                     unsafe_allow_html=True
                 )
-            st.write(f"**{movie}**")  # ✅ Show movie name below poster
+            st.markdown(f'<div class="movie-title">{movie}</div>', unsafe_allow_html=True)  # ✅ Movie name in red
