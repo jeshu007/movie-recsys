@@ -27,7 +27,7 @@ def add_bg_from_url(image_url):
     )
 
 # 🔹 Background Image (Tamil Actor Collage)
-background_image_url = "https://cdn.gulte.com/wp-content/uploads/2023/07/only-Tamil-actors-in-Tamil-films-FEFSI-kollywood.jpg"
+background_image_url = "https://www.google.com/imgres?q=ott%20platforms&imgurl=https%3A%2F%2Ftheunitedindian.com%2Fimages%2Fott-20-10-24-L-hero.jpg&imgrefurl=https%3A%2F%2Ftheunitedindian.com%2Fnews%2Fblog%3Frise-of-OTT-platforms%26b%3D341%26c%3D4&docid=Oxj1LtXdIh049M&tbnid=iBtQnsnr4znzVM&vet=12ahUKEwjrjIPLr7OMAxW24zgGHQPaGxkQM3oECEsQAA..i&w=952&h=593&hcb=2&ved=2ahUKEwjrjIPLr7OMAxW24zgGHQPaGxkQM3oECEsQAA"
 add_bg_from_url(background_image_url)
 
 # ✅ Load dataset
