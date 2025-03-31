@@ -21,7 +21,7 @@ def add_custom_styles(image_url):
             font-weight: bold;
         }}
         /* ✅ Footer Styling */
-        .footer {{
+        .footer {
             position: fixed;
             bottom: 10px;
             left: 50%;
@@ -34,11 +34,12 @@ def add_custom_styles(image_url):
             padding: 8px 15px;
             border-radius: 10px;
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-        }}
-        </style>
-        <div class="footer">This website was created by <b>Jeswant P</b> and <b>Akash V</b></div>
-
-    )
+       }
+    </style>
+    <div class="footer">This website was created by <b>Jeswant P</b> and <b>Akash V</b></div>
+    """,
+    unsafe_allow_html=True
+)
 
 # 🔹 Background Image (Tamil Actor Collage)
 background_image_url = "https://www.google.com/imgres?q=ott%20platforms%20images%20high%20quality&imgurl=https%3A%2F%2Fimg-cdn.thepublive.com%2Ffit-in%2F1200x675%2Fvnd%2Fmedia%2Fpost_banners%2Fwp-content%2Fuploads%2F2021%2F03%2FCS-Indias-top-OTT-platforms.jpg&imgrefurl=https%3A%2F%2Fwww.voicendata.com%2Findias-top-ott-platforms%2F&docid=1obpYzgES9xNPM&tbnid=NYHk0__pPtgRYM&vet=12ahUKEwjbjMigwrOMAxVRzjgGHeqMFQQQM3oECFgQAA..i&w=1200&h=630&hcb=2&ved=2ahUKEwjbjMigwrOMAxVRzjgGHeqMFQQQM3oECFgQAA"
