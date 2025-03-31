@@ -74,8 +74,14 @@ def get_movie_poster(movie_name):
 st.title("🎬  Movie Recommendation System")
 
 # ✅ Movie Search with Live Suggestions
-movie_query = st.text_input("Enter a movie name:")
+movie_query = st.text_input("Enter a movie name:", key="movie_search")
 filtered_movies = [m for m in movie_names if movie_query.lower() in m.lower()][:10] if movie_query else []
+
+# Only show selectbox if there are filtered movies
+if filtered_movies:
+    selected_movie = st.selectbox("Select a movie:", filtered_movies, key="movie_select")
+else:
+    selected_movie = None
 
 selected_movie = st.selectbox("Select a movie:", filtered_movies) if filtered_movies else None
 
