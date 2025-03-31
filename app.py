@@ -21,25 +21,21 @@ def add_bg_from_url(image_url):
         unsafe_allow_html=True
     )
 
-# 🔹 Replace with your Tamil actor image URL
-background_image_url = "https://upload.wikimedia.org/wikipedia/commons/3/3b/Kamal_Haasan_and_Rajinikanth.png"
-add_bg_from_url(background_image_url)  # ✅ Add background image
+# 🔹 Replace with a high-quality Tamil actor image URL
+background_image_url = "https://cdn.gulte.com/wp-content/uploads/2023/07/only-Tamil-actors-in-Tamil-films-FEFSI-kollywood.jpg"
+add_bg_from_url(background_image_url)
 
 # ✅ Load dataset
 movies = pd.read_csv('Tamil_movies.csv')
-
-# ✅ Remove missing values
 movies.dropna(subset=['Genre', 'Director', 'Actor'], inplace=True)
-
-# ✅ Extract movie names
 movie_names = movies["MovieName"].dropna().unique().tolist()
 
-# ✅ Function to get autocomplete suggestions
+# ✅ Function for autocomplete suggestions
 def get_suggestions(query, choices, limit=5):
     suggestions = process.extract(query, choices, limit=limit)
     return [match[0] for match in suggestions]
 
-# ✅ TMDb API Key
+# ✅ TMDb API Key (Replace with your actual key)
 TMDB_API_KEY = "8ee5ab944bdec90d5551d7b609adba61"
 
 # ✅ Function to get movie poster
@@ -54,9 +50,9 @@ def get_movie_poster(movie_name):
 
 # ✅ Function to get IMDb/Wikipedia link
 def get_movie_link(movie_name):
-    imdb_search_url = f"https://www.imdb.com/find?q={movie_name.replace(' ', '+')}&s=tt"
-    wiki_search_url = f"https://en.wikipedia.org/wiki/{movie_name.replace(' ', '_')}"
-    return imdb_search_url, wiki_search_url
+    imdb_url = f"https://www.imdb.com/find?q={movie_name.replace(' ', '+')}&s=tt"
+    wiki_url = f"https://en.wikipedia.org/wiki/{movie_name.replace(' ', '_')}"
+    return imdb_url, wiki_url
 
 # ✅ Streamlit UI
 st.title("🎬 Tamil Movie Recommendation System")
@@ -104,5 +100,8 @@ if selected_movie and st.button("Recommend"):
 
         with cols[i % 5]:  # ✅ Arrange in horizontal rows
             if poster_url:
-                st.image(poster_url, caption=movie, use_container_width=True)
-            st.markdown(f"[🔗 IMDb]({imdb_url}) | [🌍 Wikipedia]({wiki_url})", unsafe_allow_html=True)  # ✅ Clickable links
+                st.markdown(
+                    f'<a href="{imdb_url}" target="_blank">'
+                    f'<img src="{poster_url}" width="150px" style="border-radius:10px;"></a>',
+                    unsafe_allow_html=True
+                )
