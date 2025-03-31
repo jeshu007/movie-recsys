@@ -5,7 +5,6 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from scipy.sparse.linalg import svds
 import numpy as np
-import os
 
 # ✅ Function to add custom styles (without background image)
 def add_custom_styles():
@@ -61,6 +60,15 @@ TMDB_API_KEY = "8ee5ab944bdec90d5551d7b609adba61"
 # ✅ Function to get IMDb link
 def get_imdb_link(movie_name):
     return f"https://www.imdb.com/find?q={movie_name.replace(' ', '+')}&s=tt"
+
+# ✅ Function to get movie poster from TMDb API
+def get_movie_poster(movie_name):
+    url = f"https://api.themoviedb.org/3/search/movie?api_key={TMDB_API_KEY}&query={movie_name}"
+    response = requests.get(url).json()
+    if response.get("results"):
+        poster_path = response["results"][0].get("poster_path")
+        return f"https://image.tmdb.org/t/p/w500{poster_path}" if poster_path else None
+    return None
 
 # ✅ Streamlit UI
 st.title("🎬  Movie Recommendation System")
@@ -130,17 +138,20 @@ if selected_movie and st.button("Recommend"):
     # ✅ Combine recommendations
     recommendations = list(set(content_based_recommendations + collab_recommendations))
 
-    # ✅ Display recommendations
+    # ✅ Display recommendations with posters
     cols = st.columns(5)  # 5 movies per row
     for i, movie in enumerate(recommendations):
         imdb_url = get_imdb_link(movie)
-        
+        poster_url = get_movie_poster(movie)
+
         with cols[i % 5]:  # Arrange in horizontal rows
-            st.markdown(
-                f'<a href="{imdb_url}" target="_blank">'
-                f'<div class="movie-title">{movie}</div></a>',
-                unsafe_allow_html=True
-            )
+            if poster_url:
+                st.markdown(
+                    f'<a href="{imdb_url}" target="_blank">'
+                    f'<img src="{poster_url}" width="150px" style="border-radius:10px; box-shadow: 2px 2px 10px rgba(0,0,0,0.5);"></a>',
+                    unsafe_allow_html=True
+                )
+            st.markdown(f'<div class="movie-title">{movie}</div>', unsafe_allow_html=True)  # Movie name in red
 
 # Add custom styles
 add_custom_styles()
