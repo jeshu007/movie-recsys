@@ -58,8 +58,7 @@ def add_custom_styles(image_url):
     st.markdown(css_code, unsafe_allow_html=True)
 
 # 🔹 Background Image (Tamil Actor Collage)
-background_image_url = "https://www.google.com/imgres?q=ajith%20kumar%20fan%20edit&imgurl=https%3A%2F%2Fwww.hindustantimes.com%2Fht-img%2Fimg%2F2024%2F05%2F21%2F1600x900%2FAjith_Good_Bad_Ugly_1716300467112_1716300474612.jpg&imgrefurl=https%3A%2F%2Fwww.hindustantimes.com%2Fentertainment%2Ftamil-cinema%2Fajith-kumar-released-his-first-look-from-good-bad-ugly-so-he-could-click-selfies-with-fans-101716300297562.html&docid=9ChNz8vL6ouZpM&tbnid=ofEVlAUKtAEEbM&vet=12ahUKEwj0kYzkxrOMAxW8R2wGHW6wHMsQM3oECBkQAA..i&w=1600&h=900&hcb=2&ved=2ahUKEwj0kYzkxrOMAxW8R2wGHW6wHMsQM3oECBkQAA"
-add_custom_styles(background_image_url)
+background_image_url = "https://www.google.com/imgres?q=ajith%20kumar%20fan%20edit&imgurl=https%3A%2F%2Fwww.dtnext.in%2Fh-upload%2Fuid%2F1500x900_1ki5jYrJEYEs56g6HMygy63g9UQ6CLrFg3102745.jpg&imgrefurl=https%3A%2F%2Fwww.dtnext.in%2Fentertainment%2Fcinema%2Fajith-adhik-take-fans-down-the-memory-lane-with-good-bad-ugly-teaser-824647&docid=n-fBYUK8Jps7oM&tbnid=soipA45NLiy66M&vet=12ahUKEwjjzfKMx7OMAxUicGwGHQnnAbs4ChAzegQIbRAA..i&w=1500&h=900&hcb=2&ved=2ahUKEwjjzfKMx7OMAxUicGwGHQnnAbs4ChAzegQIbRAA"
 
 # ✅ Load dataset
 movies = pd.read_csv('Tamil_movies.csv')
