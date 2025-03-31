@@ -40,7 +40,7 @@ def add_custom_styles(image_url):
     st.markdown(css_code, unsafe_allow_html=True)
 
 # 🔹 Background Image (Tamil Actor Collage)
-background_image_url = "https://cdn.gulte.com/wp-content/uploads/2023/07/only-Tamil-actors-in-Tamil-films-FEFSI-kollywood.jpg"
+background_image_url = "https://www.google.com/imgres?q=ott%20&imgurl=https%3A%2F%2Ftheunitedindian.com%2Fimages%2Fott-20-10-24-L-hero.jpg&imgrefurl=https%3A%2F%2Ftheunitedindian.com%2Fnews%2Fblog%3Frise-of-OTT-platforms%26b%3D341%26c%3D4&docid=Oxj1LtXdIh049M&tbnid=iBtQnsnr4znzVM&vet=12ahUKEwj56KiYxbOMAxXtR2wGHZs-DHMQM3oECGQQAA..i&w=952&h=593&hcb=2&ved=2ahUKEwj56KiYxbOMAxXtR2wGHZs-DHMQM3oECGQQAA"
 add_custom_styles(background_image_url)
 
 # ✅ Load dataset
@@ -117,3 +117,4 @@ if selected_movie and st.button("Recommend"):
                     f'<img src="{poster_url}" width="150px" style="border-radius:10px; box-shadow: 2px 2px 10px rgba(0,0,0,0.5);"></a>',
                     unsafe_allow_html=True
                 )
+            st.write(f"**{movie}**")  # ✅ Show movie name below poster
