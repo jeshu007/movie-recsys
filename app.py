@@ -40,7 +40,7 @@ def get_suggestions(query, choices, limit=5):
     return [match[0] for match in process.extract(query, choices, limit=limit)]
 
 # ✅ TMDb API Key (Replace with your actual key)
-TMDB_API_KEY = "YOUR_TMDB_API_KEY"
+TMDB_API_KEY = "8ee5ab944bdec90d5551d7b609adba61"
 
 # ✅ Function to get movie poster
 def get_movie_poster(movie_name):
