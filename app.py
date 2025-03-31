@@ -72,20 +72,23 @@ def get_movie_poster(movie_name):
 
 # ✅ Streamlit UI
 st.title("🎬  Movie Recommendation System")
+
 # ✅ Movie selection via dropdown only (no text input)
 selected_movie = st.selectbox(
     "Select a movie:", 
     movie_names,  # Show all movies by default
-    key="movie_select"
+    key="movie_select"  # Unique key for selectbox
 )
 
 # ✅ Display recommendations when a movie is selected
-if selected_movie and st.button("Recommend"):
+if selected_movie and st.button("Recommend", key="recommend_button"):  # Unique key for button
     content_based_recommendations = recommend_movies_content_based(selected_movie)
     collab_recommendations = collaborative_filtering(selected_movie)
     
-    # Combine and display recommendations (your existing code)
+    # Combine and display recommendations
     recommendations = list(set(content_based_recommendations + collab_recommendations))
+    
+    # Rest of your recommendation display logic...
 # ✅ Create content feature for content-based filtering
 movies['content'] = movies['Genre'] + ' ' + movies['Director'] + ' ' + movies['Actor']
 
