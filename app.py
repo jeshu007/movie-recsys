@@ -3,7 +3,6 @@ import pandas as pd
 import requests
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-from fuzzywuzzy import process  
 
 # ✅ Function to add background image, text colors, and footer
 def add_custom_styles(image_url):
@@ -19,7 +18,6 @@ def add_custom_styles(image_url):
         color: black !important;
         font-weight: bold;
     }}
-    /* ✅ Movie Title Below Posters (Red Color) */
     .movie-title {{
         color: red;
         font-size: 16px;
@@ -27,7 +25,6 @@ def add_custom_styles(image_url):
         text-align: center;
         margin-top: 5px;
     }}
-    /* ✅ Custom Style for Recommend Button */
     div.stButton > button {{
         background-color: green !important;
         color: white !important;
@@ -37,7 +34,6 @@ def add_custom_styles(image_url):
         padding: 10px 20px;
         border: none;
     }}
-    /* ✅ Footer Styling */
     .footer {{
         position: fixed;
         bottom: 10px;
@@ -58,16 +54,13 @@ def add_custom_styles(image_url):
     st.markdown(css_code, unsafe_allow_html=True)
 
 # 🔹 Background Image (Tamil Actor Collage)
-background_image_url = "https://www.google.com/imgres?q=ajith%20kumar%20fan%20edit&imgurl=https%3A%2F%2Fwww.dtnext.in%2Fh-upload%2Fuid%2F1500x900_1ki5jYrJEYEs56g6HMygy63g9UQ6CLrFg3102745.jpg&imgrefurl=https%3A%2F%2Fwww.dtnext.in%2Fentertainment%2Fcinema%2Fajith-adhik-take-fans-down-the-memory-lane-with-good-bad-ugly-teaser-824647&docid=n-fBYUK8Jps7oM&tbnid=soipA45NLiy66M&vet=12ahUKEwjjzfKMx7OMAxUicGwGHQnnAbs4ChAzegQIbRAA..i&w=1500&h=900&hcb=2&ved=2ahUKEwjjzfKMx7OMAxUicGwGHQnnAbs4ChAzegQIbRAA"
+background_image_url = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.dtnext.in%2Fentertainment%2Fcinema%2Fajith-adhik-take-fans-down-the-memory-lane-with-good-bad-ugly-teaser-824647&psig=AOvVaw0fhqcrF3R_Z1w-bJ5q69QI&ust=1743484271206000&source=images&cd=vfe&opi=89978449&ved=2ahUKEwiC_sKWx7OMAxULTmwGHUhRM88QjRx6BAgAEBo"
+add_custom_styles(background_image_url)
 
 # ✅ Load dataset
 movies = pd.read_csv('Tamil_movies.csv')
 movies.dropna(subset=['Genre', 'Director', 'Actor'], inplace=True)
-movie_names = movies["MovieName"].dropna().unique().tolist()
-
-# ✅ Function for autocomplete suggestions
-def get_suggestions(query, choices, limit=5):
-    return [match[0] for match in process.extract(query, choices, limit=limit)]
+movie_names = sorted(movies["MovieName"].dropna().unique().tolist())
 
 # ✅ TMDb API Key (Replace with your actual key)
 TMDB_API_KEY = "8ee5ab944bdec90d5551d7b609adba61"
@@ -88,12 +81,11 @@ def get_imdb_link(movie_name):
 # ✅ Streamlit UI
 st.title("🎬 Tamil Movie Recommendation System")
 
-# ✅ User input with autocomplete
+# ✅ Movie Search with Live Suggestions
 movie_query = st.text_input("Enter a movie name:")
-selected_movie = None
-if movie_query:
-    suggestions = get_suggestions(movie_query, movie_names)
-    selected_movie = st.selectbox("Did you mean:", suggestions)
+filtered_movies = [m for m in movie_names if movie_query.lower() in m.lower()][:10] if movie_query else []
+
+selected_movie = st.selectbox("Select a movie:", filtered_movies) if filtered_movies else None
 
 # ✅ Create content feature
 movies['content'] = movies['Genre'] + ' ' + movies['Director'] + ' ' + movies['Actor']
