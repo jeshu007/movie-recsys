@@ -1,8 +1,10 @@
 import streamlit as st
 import pandas as pd
 import requests
+import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+from scipy.sparse.linalg import svds
 
 # ✅ Function to add background image, text colors, and footer
 def add_custom_styles(image_url):
@@ -53,8 +55,6 @@ def add_custom_styles(image_url):
     """
     st.markdown(css_code, unsafe_allow_html=True)
 
-
-
 # ✅ Load dataset
 movies = pd.read_csv('Tamil_movies.csv')
 movies.dropna(subset=['Genre', 'Director', 'Actor'], inplace=True)
@@ -93,6 +93,22 @@ vectorizer = TfidfVectorizer(stop_words='english')
 tfidf_matrix = vectorizer.fit_transform(movies['content'])
 cosine_sim = cosine_similarity(tfidf_matrix, tfidf_matrix)
 
+# ✅ Matrix Factorization (Collaborative Filtering)
+def collaborative_filtering(movie_name, num_recommendations=10):
+    user_movie_ratings = pd.read_csv("user_movie_ratings.csv")  # User ratings dataset
+    rating_matrix = user_movie_ratings.pivot(index='UserID', columns='MovieName', values='Rating').fillna(0)
+    
+    # Apply Singular Value Decomposition (SVD)
+    U, sigma, Vt = svds(rating_matrix, k=50)
+    sigma = np.diag(sigma)
+    predicted_ratings = np.dot(np.dot(U, sigma), Vt)
+    predicted_ratings_df = pd.DataFrame(predicted_ratings, columns=rating_matrix.columns)
+    
+    if movie_name in predicted_ratings_df.columns:
+        similar_scores = predicted_ratings_df[movie_name].sort_values(ascending=False)
+        return similar_scores.index[:num_recommendations].tolist()
+    return []
+
 # ✅ Recommendation function
 def recommend_movies(title, num_recommendations=15):
     title = title.strip().lower()
@@ -108,20 +124,26 @@ def recommend_movies(title, num_recommendations=15):
 
 # ✅ Display recommendations
 if selected_movie and st.button("Recommend"):
-    recommended_movies = recommend_movies(selected_movie)
-
+    content_recommendations = recommend_movies(selected_movie)
+    collab_recommendations = collaborative_filtering(selected_movie)
+    
     # ✅ Display movies horizontally
     cols = st.columns(5)  # 5 movies per row
 
-    for i, movie in enumerate(recommended_movies):
+    st.subheader("📌 Content-Based Recommendations")
+    for i, movie in enumerate(content_recommendations):
         poster_url = get_movie_poster(movie)
-        imdb_url = get_imdb_link(movie)  # ✅ IMDb Link
+        imdb_url = get_imdb_link(movie)
 
-        with cols[i % 5]:  # ✅ Arrange in horizontal rows
+        with cols[i % 5]:
             if poster_url:
                 st.markdown(
                     f'<a href="{imdb_url}" target="_blank">'
                     f'<img src="{poster_url}" width="150px" style="border-radius:10px; box-shadow: 2px 2px 10px rgba(0,0,0,0.5);"></a>',
                     unsafe_allow_html=True
                 )
-            st.markdown(f'<div class="movie-title">{movie}</div>', unsafe_allow_html=True)  # ✅ Movie name in red
+            st.markdown(f'<div class="movie-title">{movie}</div>', unsafe_allow_html=True)
+
+    st.subheader("🔄 Collaborative Filtering Recommendations")
+    for movie in collab_recommendations:
+        st.write(f"- {movie}")
