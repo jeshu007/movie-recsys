@@ -53,9 +53,7 @@ def add_custom_styles(image_url):
     """
     st.markdown(css_code, unsafe_allow_html=True)
 
-# 🔹 Background Image (Tamil Actor Collage)
-background_image_url = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.dtnext.in%2Fentertainment%2Fcinema%2Fajith-adhik-take-fans-down-the-memory-lane-with-good-bad-ugly-teaser-824647&psig=AOvVaw0fhqcrF3R_Z1w-bJ5q69QI&ust=1743484271206000&source=images&cd=vfe&opi=89978449&ved=2ahUKEwiC_sKWx7OMAxULTmwGHUhRM88QjRx6BAgAEBo"
-add_custom_styles(background_image_url)
+
 
 # ✅ Load dataset
 movies = pd.read_csv('Tamil_movies.csv')
@@ -79,7 +77,7 @@ def get_imdb_link(movie_name):
     return f"https://www.imdb.com/find?q={movie_name.replace(' ', '+')}&s=tt"
 
 # ✅ Streamlit UI
-st.title("🎬 Tamil Movie Recommendation System")
+st.title("🎬  Movie Recommendation System")
 
 # ✅ Movie Search with Live Suggestions
 movie_query = st.text_input("Enter a movie name:")
