@@ -27,7 +27,7 @@ def add_bg_from_url(image_url):
     )
 
 # 🔹 Background Image (Tamil Actor Collage)
-background_image_url = "https://www.google.com/imgres?q=ott%20platforms&imgurl=https%3A%2F%2Ftheunitedindian.com%2Fimages%2Fott-20-10-24-L-hero.jpg&imgrefurl=https%3A%2F%2Ftheunitedindian.com%2Fnews%2Fblog%3Frise-of-OTT-platforms%26b%3D341%26c%3D4&docid=Oxj1LtXdIh049M&tbnid=iBtQnsnr4znzVM&vet=12ahUKEwjrjIPLr7OMAxW24zgGHQPaGxkQM3oECEsQAA..i&w=952&h=593&hcb=2&ved=2ahUKEwjrjIPLr7OMAxW24zgGHQPaGxkQM3oECEsQAA"
+background_image_url = "https://www.google.com/imgres?q=ott%20platforms%20images%20high%20quality&imgurl=https%3A%2F%2Fwww.themobileindian.com%2Fwp-content%2Fuploads%2F2020%2F07%2Fott-platform.png&imgrefurl=https%3A%2F%2Fwww.themobileindian.com%2Fpicture-story%2Ftop-10-ott-platforms-in-india-1346&docid=-30cbEQ2SfTr0M&tbnid=MRheF71hbbG-3M&vet=12ahUKEwjkjLz4r7OMAxUljWMGHar0DNAQM3oFCIIBEAA..i&w=1280&h=720&hcb=2&ved=2ahUKEwjkjLz4r7OMAxUljWMGHar0DNAQM3oFCIIBEAA"
 add_bg_from_url(background_image_url)
 
 # ✅ Load dataset
