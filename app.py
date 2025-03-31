@@ -16,9 +16,9 @@ def add_bg_from_url(image_url):
             background-position: center;
             background-attachment: fixed;
         }}
-        /* ✅ Change font color to black */
+        /* ✅ Change font color to white */
         body, .stTextInput, .stSelectbox, .stButton, .stMarkdown {{
-            color: black !important;
+            color: white !important;
         }}
         </style>
         """,
