@@ -58,7 +58,7 @@ def add_custom_styles(image_url):
     st.markdown(css_code, unsafe_allow_html=True)
 
 # 🔹 Background Image (Tamil Actor Collage)
-background_image_url = "https://www.google.com/imgres?q=kollywood%20wallpapers%20hd&imgurl=https%3A%2F%2Fpreview.redd.it%2Fthese-2-shots-from-the-lyric-video-are-such-wallpaper-v0-mejzcb7700rb1.png%3Fwidth%3D640%26crop%3Dsmart%26auto%3Dwebp%26s%3D03fee7e0a05e93a54ef8f623faa224ad90ae7461&imgrefurl=https%3A%2F%2Fwww.reddit.com%2Fr%2Fkollywood%2Fcomments%2F16ug3oh%2Fthese_2_shots_from_the_lyric_video_are_such%2F&docid=AwR3pYdgW7apdM&tbnid=WbqQtxBuv5Zn9M&vet=12ahUKEwjXiMnvxbOMAxW4SGcHHbmDBFMQM3oECGIQAA..i&w=640&h=359&hcb=2&ved=2ahUKEwjXiMnvxbOMAxW4SGcHHbmDBFMQM3oECGIQAA"
+background_image_url = "https://www.google.com/imgres?q=ajith%20kumar%20fan%20edit&imgurl=https%3A%2F%2Fwww.hindustantimes.com%2Fht-img%2Fimg%2F2024%2F05%2F21%2F1600x900%2FAjith_Good_Bad_Ugly_1716300467112_1716300474612.jpg&imgrefurl=https%3A%2F%2Fwww.hindustantimes.com%2Fentertainment%2Ftamil-cinema%2Fajith-kumar-released-his-first-look-from-good-bad-ugly-so-he-could-click-selfies-with-fans-101716300297562.html&docid=9ChNz8vL6ouZpM&tbnid=ofEVlAUKtAEEbM&vet=12ahUKEwj0kYzkxrOMAxW8R2wGHW6wHMsQM3oECBkQAA..i&w=1600&h=900&hcb=2&ved=2ahUKEwj0kYzkxrOMAxW8R2wGHW6wHMsQM3oECBkQAA"
 add_custom_styles(background_image_url)
 
 # ✅ Load dataset
