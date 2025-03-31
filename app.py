@@ -85,5 +85,6 @@ if selected_movie and st.button("Recommend"):
         with cols[i]:  # Display each movie in a separate column
             if poster_url:
                 st.image(poster_url, caption=movie, use_column_width=True)
+
             else:
                 st.write(f"❌ No Poster for {movie}")
