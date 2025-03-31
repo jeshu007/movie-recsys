@@ -5,7 +5,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from fuzzywuzzy import process  
 
-# ✅ Add custom CSS for background image
+# ✅ Add custom CSS for background image & black font color
 def add_bg_from_url(image_url):
     st.markdown(
         f"""
@@ -15,6 +15,10 @@ def add_bg_from_url(image_url):
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+        }}
+        /* ✅ Change font color to black */
+        body, .stTextInput, .stSelectbox, .stButton, .stMarkdown {{
+            color: black !important;
         }}
         </style>
         """,
