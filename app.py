@@ -75,11 +75,15 @@ if selected_movie and st.button("Recommend"):
     # ✅ Get recommendations
     recommendations = recommend_movies(selected_movie)
 
-    # ✅ Display recommendations with images
+    # ✅ Display recommendations in a row (horizontally)
     st.write("### 🎥 Recommended Movies:")
-    for movie in recommendations["MovieName"]:
+    
+    cols = st.columns(len(recommendations))  # Create columns dynamically
+    
+    for i, movie in enumerate(recommendations["MovieName"]):
         poster_url = get_movie_poster(movie)
-        if poster_url:
-            st.image(poster_url, caption=movie, use_column_width=True)
-        else:
-            st.write(f"- {movie} (❌ Poster Not Found)")
+        with cols[i]:  # Display each movie in a separate column
+            if poster_url:
+                st.image(poster_url, caption=movie, use_column_width=True)
+            else:
+                st.write(f"❌ No Poster for {movie}")
