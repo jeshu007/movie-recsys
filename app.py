@@ -7,6 +7,8 @@ from scipy.sparse.linalg import svds
 import numpy as np
 
 # ========== FUNCTION DEFINITIONS ==========
+# ========== FUNCTION DEFINITIONS ==========
+
 def add_custom_styles():
     css_code = """
     <style>
@@ -33,19 +35,15 @@ def add_custom_styles():
     .footer {
         position: fixed;
         bottom: 10px;
-        left: 50%;
-        transform: translateX(-50%);
+        width: 100%;
         text-align: center;
-        font-size: 18px;
-        color: black;
-        font-weight: bold;
-        background: rgba(255, 255, 255, 0.8);
-        padding: 8px 15px;
-        border-radius: 10px;
-        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        font-size: 14px;
+        color: gray;
     }
     </style>
-    <div class="footer">This website was created by <b>Jeswant P</b> and <b>Akash V</b></div>
+    <div class="footer">
+        This website was created by <b>Jeswant P</b> and <b>Akash V</b>
+    </div>
     """
     st.markdown(css_code, unsafe_allow_html=True)
 
