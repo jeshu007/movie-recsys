@@ -62,6 +62,36 @@ def search_movies_by_genre(genre):
     filtered_movies = movies[movies['Genre'].str.lower().str.contains(genre, na=False)]
     return filtered_movies["MovieName"].tolist()
 
+def recommend_movies_content_based(title, num_recommendations=10):
+    title = title.strip().lower()
+    movies['clean_name'] = movies['MovieName'].str.strip().str.lower()
+    if not movies['clean_name'].eq(title).any():
+        return []
+    idx = movies[movies['clean_name'] == title].index[0]
+    sim_scores = sorted(enumerate(cosine_sim[idx]), key=lambda x: x[1], reverse=True)
+    sim_indices = [i[0] for i in sim_scores[1:num_recommendations+1]]
+    return movies.iloc[sim_indices]['MovieName'].tolist()
+
+def collaborative_filtering(movie_name, num_recommendations=10):
+    try:
+        user_movie_ratings = pd.read_csv("Tamil_movies.csv")
+        if 'MovieID' not in user_movie_ratings or 'Rating' not in user_movie_ratings:
+            return []
+        rating_matrix = user_movie_ratings.pivot(index='UserID', columns='MovieID', values='Rating').fillna(0)
+        U, sigma, Vt = svds(rating_matrix, k=50)
+        sigma = np.diag(sigma)
+        predicted_ratings = np.dot(np.dot(U, sigma), Vt)
+        predicted_ratings_df = pd.DataFrame(predicted_ratings, columns=rating_matrix.columns)
+        movie_id = user_movie_ratings[user_movie_ratings['MovieName'].str.lower() == movie_name.lower()]['MovieID'].values
+        if movie_id.size > 0:
+            movie_id = movie_id[0]
+            similar_scores = predicted_ratings_df[movie_id].sort_values(ascending=False)
+            return user_movie_ratings[user_movie_ratings['MovieID'].isin(similar_scores.index[:num_recommendations])]['MovieName'].tolist()
+        return []
+    except Exception as e:
+        print(f"Error in collaborative filtering: {e}")
+        return []
+
 # ========== DATA LOADING & INITIALIZATION ==========
 movies = pd.read_csv('Tamil_movies.csv')
 movies.dropna(subset=['Genre', 'Director', 'Actor'], inplace=True)
@@ -69,6 +99,11 @@ genres = sorted(set(
     genre.strip().lower() for sublist in movies["Genre"].dropna().str.split(',') for genre in sublist
 ))
 TMDB_API_KEY = "8ee5ab944bdec90d5551d7b609adba61"
+
+movies['content'] = movies['Genre'] + ' ' + movies['Director'] + ' ' + movies['Actor']
+vectorizer = TfidfVectorizer(stop_words='english')
+tfidf_matrix = vectorizer.fit_transform(movies['content'])
+cosine_sim = cosine_similarity(tfidf_matrix, tfidf_matrix)
 
 # ========== STREAMLIT UI ==========
 st.title("🎬 Movie Recommendation System")
@@ -78,9 +113,14 @@ genre_selected = st.selectbox("Select a genre:", genres, key="genre_select")
 
 if st.button("Search Movies", key="search_button"):
     genre_movies = search_movies_by_genre(genre_selected)
+    recommendations = []
+    for movie in genre_movies:
+        recommendations.extend(recommend_movies_content_based(movie, 3))
+        recommendations.extend(collaborative_filtering(movie, 3))
+    recommendations = list(set(recommendations))
     
     cols = st.columns(5)
-    for i, movie in enumerate(genre_movies):
+    for i, movie in enumerate(recommendations):
         imdb_url = get_imdb_link(movie)
         poster_url = get_movie_poster(movie)
         with cols[i % 5]:
