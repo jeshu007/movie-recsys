@@ -108,7 +108,8 @@ def collaborative_filtering(movie_name, num_recommendations=10):
 movies = pd.read_csv('Tamil_movies2.csv')
 movies.dropna(subset=['Genre', 'Director', 'Actor'], inplace=True)
 genres = sorted(set(
-    genre.strip().lower() for sublist in movies["Genre"].dropna().str.split(',') for genre in sublist
+    genre.strip().lower() for sublist in movies["Genre"].dropna().str.split(',')
+    for genre in sublist if genre.strip().lower() not in ["family", "fantasy"]
 ))
 TMDB_API_KEY = "8ee5ab944bdec90d5551d7b609adba61"
 
