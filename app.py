@@ -143,20 +143,16 @@ if st.button("Search Movies", key="search_button"):
 
     # Display only movies with valid posters
     cols = st.columns(5)
-   for i, movie in enumerate(recommendations):
-    imdb_url = get_imdb_link(movie)
-    poster_url = get_movie_poster(movie)  # Fetch movie poster
-    
-    with cols[i % 5]:  # Ensure proper indentation inside loop
-        st.markdown(
-            f'<a href="{imdb_url}" target="_blank">'
-            f'<img src="{poster_url}" width="150px" style="border-radius:10px; box-shadow: 2px 2px 10px rgba(0,0,0,0.5);"></a>',
-            unsafe_allow_html=True
-        )
-        st.markdown(f'<div class="movie-title">{movie}</div>', unsafe_allow_html=True)
-
-
-
-
-# Add custom styles (must be last)
-add_custom_styles()
+    for i, movie in enumerate(recommendations):
+        imdb_url = get_imdb_link(movie)
+        poster_url = get_movie_poster(movie)  # Fetch movie poster
+        with cols[i % 5]:  # Indentation should match here
+            st.markdown(
+                f'<a href="{imdb_url}" target="_blank">'
+                f'<img src="{poster_url}" width="150px" style="border-radius:10px; box-shadow: 2px 2px 10px rgba(0,0,0,0.5);"></a>',
+                unsafe_allow_html=True
+            )
+            st.markdown(f'<div class="movie-title">{movie}</div>', unsafe_allow_html=True)
+            
+            # Add custom styles (must be last)
+            add_custom_styles()
