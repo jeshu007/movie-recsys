@@ -89,7 +89,7 @@ def recommend_movies_content_based(title, num_recommendations=10):
 
 def collaborative_filtering(movie_name, num_recommendations=10):
     try:
-        user_movie_ratings = pd.read_csv("Tamil_movies.csv")
+        user_movie_ratings = pd.read_csv("Tamil_movies2.csv")
         if 'MovieID' not in user_movie_ratings or 'Rating' not in user_movie_ratings:
             return []
         rating_matrix = user_movie_ratings.pivot(index='UserID', columns='MovieID', values='Rating').fillna(0)
@@ -108,7 +108,7 @@ def collaborative_filtering(movie_name, num_recommendations=10):
         return []
 
 # ========== DATA LOADING & INITIALIZATION ==========
-movies = pd.read_csv('Tamil_movies.csv')
+movies = pd.read_csv('Tamil_movies2.csv')
 movies.dropna(subset=['Genre', 'Director', 'Actor'], inplace=True)
 genres = sorted(set(
     genre.strip().lower() for sublist in movies["Genre"].dropna().str.split(',') for genre in sublist
