@@ -119,23 +119,34 @@ genre_selected = st.selectbox("Select a genre:", genres, key="genre_select")
 if st.button("Search Movies", key="search_button"):
     genre_movies = search_movies_by_genre(genre_selected)
     recommendations = []
+    
+    # Generate recommendations
     for movie in genre_movies:
         recommendations.extend(recommend_movies_content_based(movie, 3))
         recommendations.extend(collaborative_filtering(movie, 3))
-    recommendations = list(set(recommendations))
     
-    cols = st.columns(5)
-    for i, movie in enumerate(recommendations):
-        imdb_url = get_imdb_link(movie)
+    recommendations = list(set(recommendations))  # Remove duplicates
+    
+    # Filter out movies with no posters
+    valid_recommendations = []
+    for movie in recommendations:
         poster_url = get_movie_poster(movie)
+        if poster_url and "placeholder.com" not in poster_url:  # Ensure a valid poster exists
+            valid_recommendations.append((movie, poster_url))
+
+    # Display only movies with valid posters
+    cols = st.columns(5)
+    for i, (movie, poster_url) in enumerate(valid_recommendations):
+        imdb_url = get_imdb_link(movie)
         with cols[i % 5]:
-            if poster_url:
-                st.markdown(
-                    f'<a href="{imdb_url}" target="_blank">'
-                    f'<img src="{poster_url}" width="150px" style="border-radius:10px; box-shadow: 2px 2px 10px rgba(0,0,0,0.5);"></a>',
-                    unsafe_allow_html=True
-                )
+            st.markdown(
+                f'<a href="{imdb_url}" target="_blank">'
+                f'<img src="{poster_url}" width="150px" '
+                f'style="border-radius:10px; box-shadow: 2px 2px 10px rgba(0,0,0,0.5);"></a>',
+                unsafe_allow_html=True
+            )
             st.markdown(f'<div class="movie-title">{movie}</div>', unsafe_allow_html=True)
+
 
 # Add custom styles (must be last)
 add_custom_styles()
