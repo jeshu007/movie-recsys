@@ -52,14 +52,11 @@ def get_imdb_link(movie_name):
 def get_movie_poster(movie_name):
     url = f"https://api.themoviedb.org/3/search/movie?api_key={TMDB_API_KEY}&query={movie_name}"
     response = requests.get(url).json()
-    
-    if response.get("results") and len(response["results"]) > 0:
+    if response.get("results"):
         poster_path = response["results"][0].get("poster_path")
-        if poster_path:
-            return f"https://image.tmdb.org/t/p/w500{poster_path}"
-    
-    # Return a default placeholder image if the movie poster is missing
-    return "https://via.placeholder.com/150?text=No+Image"
+        return f"https://image.tmdb.org/t/p/w500{poster_path}" if poster_path else "https://via.placeholder.com/150x225?text=No+Image"
+    return "https://via.placeholder.com/150x225?text=No+Image"
+
 
 
 def search_movies_by_genre(genre):
@@ -146,16 +143,17 @@ if st.button("Search Movies", key="search_button"):
 
     # Display only movies with valid posters
     cols = st.columns(5)
-    for i, (movie, poster_url) in enumerate(valid_recommendations):
-        imdb_url = get_imdb_link(movie)
-        with cols[i % 5]:
-            st.markdown(
-                f'<a href="{imdb_url}" target="_blank">'
-                f'<img src="{poster_url}" width="150px" '
-                f'style="border-radius:10px; box-shadow: 2px 2px 10px rgba(0,0,0,0.5);"></a>',
-                unsafe_allow_html=True
-            )
-            st.markdown(f'<div class="movie-title">{movie}</div>', unsafe_allow_html=True)
+    for i, movie in enumerate(recommendations):
+    imdb_url = get_imdb_link(movie)
+    poster_url = get_movie_poster(movie)
+    with cols[i % 5]:
+        st.markdown(
+            f'<a href="{imdb_url}" target="_blank">'
+            f'<img src="{poster_url}" width="150px" style="border-radius:10px; box-shadow: 2px 2px 10px rgba(0,0,0,0.5);"></a>',
+            unsafe_allow_html=True
+        )
+        st.markdown(f'<div class="movie-title">{movie}</div>', unsafe_allow_html=True)
+
 
 
 # Add custom styles (must be last)
