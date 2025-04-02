@@ -64,18 +64,28 @@ def get_movie_poster(movie_name):
 
 def search_movies_by_genre(genre):
     genre = genre.strip().lower()
-    filtered_movies = movies[movies['Genre'].str.lower().str.contains(genre, na=False)]
+    filtered_movies = movies[movies['Genre'].str.lower().str.split(',').apply(lambda x: genre in [g.strip() for g in x] if isinstance(x, list) else False)]
     return filtered_movies["MovieName"].tolist()
+
 
 def recommend_movies_content_based(title, num_recommendations=10):
     title = title.strip().lower()
     movies['clean_name'] = movies['MovieName'].str.strip().str.lower()
+
     if not movies['clean_name'].eq(title).any():
         return []
+    
     idx = movies[movies['clean_name'] == title].index[0]
     sim_scores = sorted(enumerate(cosine_sim[idx]), key=lambda x: x[1], reverse=True)
     sim_indices = [i[0] for i in sim_scores[1:num_recommendations+1]]
-    return movies.iloc[sim_indices]['MovieName'].tolist()
+
+    # Ensure recommended movies belong to the same genre as the input movie
+    input_movie_genre = movies.loc[idx, "Genre"]
+    recommended_movies = movies.iloc[sim_indices]
+    filtered_movies = recommended_movies[recommended_movies['Genre'].str.contains(input_movie_genre, case=False, na=False)]
+
+    return filtered_movies['MovieName'].tolist()
+
 
 def collaborative_filtering(movie_name, num_recommendations=10):
     try:
