@@ -52,10 +52,15 @@ def get_imdb_link(movie_name):
 def get_movie_poster(movie_name):
     url = f"https://api.themoviedb.org/3/search/movie?api_key={TMDB_API_KEY}&query={movie_name}"
     response = requests.get(url).json()
-    if response.get("results"):
+    
+    if response.get("results") and len(response["results"]) > 0:
         poster_path = response["results"][0].get("poster_path")
-        return f"https://image.tmdb.org/t/p/w500{poster_path}" if poster_path else None
-    return None
+        if poster_path:
+            return f"https://image.tmdb.org/t/p/w500{poster_path}"
+    
+    # Return a default placeholder image if the movie poster is missing
+    return "https://via.placeholder.com/150?text=No+Image"
+
 
 def search_movies_by_genre(genre):
     genre = genre.strip().lower()
