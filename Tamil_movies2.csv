@@ -84,7 +84,7 @@ Press 1 for Tamil,Comedy,7.0,Ramprakash Rayappa,Nakhul,850,2015,4.0,8.0,6.333333
 Yennai Arindhaal,Action,7.3,Gautham Vasudev Menon,Ajith Kumar,7740,2015,7.0,9.0,7.766666667
 I,Action,7.3,S. Shankar,Vikram,18345,2015,8.0,9.0,8.1
 Dhuruvangal Pathinaaru,Action,8.4,Karthick Naren,Rahman,10895,2016,5.0,8.0,7.133333333
-Chennai 600028 Second Innings,Comedy,7.0,Venkat Prabhu,Jai,937,2016,1.0,7.0,5.0
+Chennai 600028 Second Innings,Sports,7.0,Venkat Prabhu,Jai,937,2016,1.0,7.0,5.0
 Achcham Yenbadhu Madamaiyada,Action,6.4,Gautham Vasudev Menon,T.R. Silambarasan,1896,2016,6.0,7.0,6.466666667
 Ammani,Drama,7.9,Lakshmi Ramakrishnan,Semmalar Annam,52730,2016,9.0,7.0,7.966666667
 Aandavan Kattalai,Drama,8.1,M. Manikandan,Vijay Sethupathi,2060,2016,8.0,8.0,8.033333333
@@ -358,3 +358,33 @@ Sardar Udham,"Biography, History",8.7,Shoojit Sircar,Vicky Kaushal,170000,2021,8
 Mary Kom,"Biography, Sports",7.2,Omung Kumar,Priyanka Chopra,150000,2014,7.3,7.2,U/A
 Neerja,"Biography, Thriller",7.7,Ram Madhvani,Sonam Kapoor,130000,2016,7.8,7.7,U/A
 Bhaag Milkha Bhaag,"Biography, Sports",8.2,Rakeysh Omprakash Mehra,Farhan Akhtar,280000,2013,8.3,8.2,U
+Peranmai,War,7.2,S. P. Jananathan,Jayam Ravi,25463,2009,7.8,8.5,7.4
+Pithamagan,War,8.4,Bala,Vikram,58796,2003,9,9.1,8.8
+Kaatru Veliyidai,War,6.1,Mani Ratnam,Karthi,22000,2017,7.5,7,6.8
+Iyarkai,War,7.3,S. P. Jananathan,Shaam,12000,2003,7.7,7.9,7.2
+Madrasapattinam,War,7.8,A. L. Vijay,Arya,32145,2010,8.2,8.5,7.9
+Kuruthipunal,War,8.3,P. C. Sreeram,Kamal Haasan,41569,1995,9,9.2,8.7
+Vande Mataram,War,5.2,Aravind T.,Mammootty,9000,2010,6,5.5,5.4
+Hey Ram,War,8,Kamal Haasan,Kamal Haasan,39876,2000,9.1,8.8,8.5
+Bombay,War,8.1,Mani Ratnam,Arvind Swamy,50012,1995,8.8,8.7,8.3
+Ravanan,War,6.9,Mani Ratnam,Vikram,27000,2010,7.5,7.2,7
+Ratsasan,Thriller,8.4,Ram Kumar,Vishnu Vishal,68965,2018,9.1,9.3,8.8
+Thani Oruvan,Thriller,8.2,Mohan Raja,Jayam Ravi,62345,2015,8.9,8.7,8.5
+Dhuruvangal Pathinaaru,Thriller,8.3,Karthick Naren,Rahman,50985,2016,8.7,8.5,8.4
+Eeram,Thriller,7.4,Arivazhagan,Aadhi,32045,2009,7.8,7.6,7.5
+Naan Mahaan Alla,Thriller,7.5,Suseenthiran,Karthi,37000,2010,7.9,7.7,7.6
+Anjaathey,Thriller,8,Mysskin,Narain,25000,2008,8.5,8.2,8.1
+Pizza,Thriller,8,Karthik Subbaraj,Vijay Sethupathi,49000,2012,8.5,8.3,8.2
+Aaranya Kaandam,Thriller,8.5,Thiagarajan Kumararaja,Jackie Shroff,28900,2010,8.8,8.6,8.4
+Thegidi,Thriller,7.8,P. Ramesh,Ashok Selvan,34000,2014,8,7.9,7.7
+Vikram Vedha,Thriller,8.6,Pushkar-Gayathri,Madhavan,74580,2017,9,9.2,8.9
+Quick Gun Murugan,Western,6.1,Shashanka Ghosh,Rajendra Prasad,14520,2009,6.5,6.3,6.2
+Irumbukkottai Murattu Singam,Western,5.9,Chimbu Deven,Raghava Lawrence,9500,2010,6.2,5.8,5.7
+Guns and Thighs,Western,7,Ram Gopal Varma,Various,5200,2019,7.3,7.1,7
+Rajapattai,Western,4.9,Suseenthiran,Vikram,7800,2011,5.5,5.2,5
+Yuddham Sei,Western,7.7,Mysskin,Cheran,20100,2011,8,7.9,7.8
+Ivan Vera Mathiri,Western,6.3,M. Saravanan,Vikram Prabhu,15000,2013,6.7,6.5,6.4
+Thiruvilaiyaadal Aarambam,Western,6.8,Boopathy Pandian,Dhanush,21000,2006,7.2,7,6.9
+Thuppakki,Western,8,A. R. Murugadoss,Vijay,73210,2012,8.5,8.3,8.2
+Pudhupettai,Western,8.4,Selvaraghavan,Dhanush,58240,2006,8.9,8.7,8.5
+Kaithi,Western,8.5,Lokesh Kanagaraj,Karthi,65985,2019,9,9.1,8.8
